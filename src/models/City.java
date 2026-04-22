@@ -18,4 +18,9 @@ public class City {
     public List<String> getDemandedGoods() {
         return demandedGoods;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
