@@ -53,6 +53,15 @@ public class Trader {
         traveledDistance += Math.max(0, distance);
     }
 
+    public void spendMoney(int amount) {
+        wallet = Math.max(0, wallet - amount);
+    }
+
+    public void removeGoods(Goods goods) {
+        if (goodsList.remove(goods)) {
+            currentLoad -= goods.getWeight();
+        }
+    }
 
     //Проверка прибытия к пункту назначения
     public boolean hasArrived() {
