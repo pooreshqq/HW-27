@@ -47,8 +47,8 @@ public class Trader {
 
 
     //Функция движения, возможно, надо переделать
-    public void move() {
-        traveledDistance += speed;
+    public void travel(int distance) {
+        traveledDistance += Math.max(0, distance);
     }
 
 
