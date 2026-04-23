@@ -63,6 +63,10 @@ public class Trader {
         }
     }
 
+    public void addMoney(int amount) {
+        wallet += amount;
+    }
+
     //Проверка прибытия к пункту назначения
     public boolean hasArrived() {
         return traveledDistance >= distanceToDestination;
