@@ -35,5 +35,7 @@ public class BanditsEvent implements Event{
 
             trader.removeGoods(bestGoods);
         }
+
+        trader.travel(0);
     }
 }
