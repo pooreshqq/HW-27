@@ -24,13 +24,12 @@ public class Trader {
     }
 
     public boolean canLoad(Goods goods) {
-//        if (currentLoad + goods.getВес() > maxLoadCapacity) {
-//            return false;
-//        }
-//
-//        if (wallet < goods.getЦена()) {
-//            return false;
-//        }
+        if (this.currentLoad + goods.getWeight() > this.maxLoadCapacity) {
+            return false;
+        }
+        if (this.wallet < goods.getPrice()) {
+            return false;
+        }
 
         return true;
     }
