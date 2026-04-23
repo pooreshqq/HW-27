@@ -13,11 +13,13 @@ public class Trader {
     private City currentCity;
     private City destinationCity;
     private List<Goods> goodsList;
+    private int maxSpeed;
 
-    public Trader(int wallet, int maxLoadCapacity, City currentCity) {
+    public Trader(int wallet, int maxLoadCapacity, City currentCity, int maxSpeed) {
         this.wallet = wallet;
         this.maxLoadCapacity = maxLoadCapacity;
         this.currentCity = currentCity;
+        this.maxSpeed = maxSpeed;
         this.goodsList = new ArrayList<>();
         this.currentLoad = 0;
         this.traveledDistance = 0;
@@ -85,6 +87,10 @@ public class Trader {
 
     public int getTraveledDistance(){
         return traveledDistance;
+    }
+
+    public int getMaxSpeed(){
+        return maxSpeed;
     }
 
 
