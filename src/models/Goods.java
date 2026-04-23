@@ -1,6 +1,7 @@
 package models;
 
 import enums.GoodsType;
+import exceptions.StateSelectException;
 import state.NormalState;
 import state.State;
 
@@ -19,6 +20,72 @@ public class Goods {
 
         //пока что по умолчанию состояние товара будет нормальным
         setDefaultState();
+    }
+
+    //функции для смены состояния товара
+    public void onNormal(){
+        if(this.stateObj == null) setDefaultState();
+        try{
+            this.stateObj.onNormal(this);
+        } catch (StateSelectException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Неизвестная ошибка");
+        }
+    }
+
+    public void onSlightlySpoiled(){
+        if(this.stateObj == null) setDefaultState();
+        try{
+            this.stateObj.OnSlightlySpoiled(this);
+        } catch (StateSelectException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Неизвестная ошибка");
+        }
+    }
+
+    public void onHalfSpoiled(){
+        if(this.stateObj == null) setDefaultState();
+        try{
+            this.stateObj.OnHalfSpoiled(this);
+        } catch (StateSelectException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Неизвестная ошибка");
+        }
+    }
+
+    public void onAlmostGone(){
+        if(this.stateObj == null) setDefaultState();
+        try{
+            this.stateObj.OnAlmostGone(this);
+        } catch (StateSelectException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Неизвестная ошибка");
+        }
+    }
+
+    public void onTotallyRuined(){
+        if(this.stateObj == null) setDefaultState();
+        try{
+            this.stateObj.OnTotallyRuined(this);
+        } catch (StateSelectException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Неизвестная ошибка");
+        }
     }
 
     //геттеры
