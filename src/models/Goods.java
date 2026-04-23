@@ -1,42 +1,68 @@
 package models;
 
-import enums.GoodsQuality;
 import enums.GoodsType;
+import state.NormalState;
+import state.State;
 
 public class Goods {
     private int weight;
-    private GoodsType type;
-    private GoodsQuality quality;
+    private String state;
+    private State stateObj;
     private int price;
+    private GoodsType type;
+    private double coefficient;
 
-    public Goods(int weight, GoodsType type, GoodsQuality quality, int price) {
+    public Goods(int weight, int price, GoodsType type) {
         this.weight = weight;
-        this.type = type;
-        this.quality = quality;
         this.price = price;
+        this.type = type;
+
+        //пока что по умолчанию состояние товара будет нормальным
+        setDefaultState();
     }
 
+    //геттеры
     public int getWeight() {
         return weight;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public State getStateObj() {
+        return stateObj;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public GoodsType getType() {
         return type;
     }
 
-    public GoodsQuality getQuality() {
-        return quality;
+    public double getCoefficient() {
+        return coefficient;
     }
 
-    public double getQualityCoefficient() {
-        return quality.getCOEFFICIENT();
+    //сеттеры
+    public void setStateObj(State stateObj) {
+        this.stateObj = stateObj;
     }
 
-    public String getQualityDescription() {
-        return quality.getDESCRIPTION();
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public int getPrice() {
-        return price;
+    public void setCoefficient(double coefficient) {
+        this.coefficient = coefficient;
+    }
+
+    //утилиты
+    private void setDefaultState(){
+        this.state = "Нормальное";
+        this.stateObj = new NormalState();
+        this.coefficient = 1.2;
     }
 }
