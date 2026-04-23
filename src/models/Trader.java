@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trader {
-    private int money;
+    private int wallet;
     private int maxLoadCapacity;
     private int currentLoad;
     private int speed;
@@ -14,8 +14,8 @@ public class Trader {
     private City destinationCity;
     private List<Goods> goodsList;
 
-    public Trader(int money, int maxLoadCapacity, City currentCity) {
-        this.money = money;
+    public Trader(int wallet, int maxLoadCapacity, City currentCity) {
+        this.wallet = wallet;
         this.maxLoadCapacity = maxLoadCapacity;
         this.currentCity = currentCity;
         this.goodsList = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Trader {
 //            return false;
 //        }
 //
-//        if (money < goods.getЦена()) {
+//        if (wallet < goods.getЦена()) {
 //            return false;
 //        }
 
@@ -39,7 +39,7 @@ public class Trader {
         if (canLoad(goods)){
             goodsList.add(goods);
 //            currentLoad += goods.getВес();
-//            money -= goods.getЦена();
+//            wallet -= goods.getЦена();
         }
     }
 
@@ -60,7 +60,7 @@ public class Trader {
     }
 
     public int getMoney() {
-        return money;
+        return wallet;
     }
 
     public List<Goods> getGoodsList(){
