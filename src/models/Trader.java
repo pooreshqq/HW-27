@@ -23,6 +23,7 @@ public class Trader {
         this.traveledDistance = 0;
     }
 
+    //Проверка можно ли загрузить товар
     public boolean canLoad(Goods goods) {
         if (this.currentLoad + goods.getWeight() > this.maxLoadCapacity) {
             return false;
@@ -34,26 +35,30 @@ public class Trader {
         return true;
     }
 
+
+    //Добавление товара
     public void addGoods(Goods goods) {
-        if (canLoad(goods)){
-            goodsList.add(goods);
-//            currentLoad += goods.getВес();
-//            wallet -= goods.getЦена();
+        if (canLoad(goods)){ //Если можно загрузить
+            this.goodsList.add(goods); //Товар добавляется в список товаров goodList
+            this.currentLoad += goods.getWeight(); //Обновление насколько теперь загружен торговец
+            this.wallet -= goods.getPrice(); //Обновление кошелька: вычитывается стоимость товара их кошелька торговца
         }
     }
 
+
+    //Функция движения, возможно, надо переделать
     public void move() {
         traveledDistance += speed;
     }
 
+
+    //Проверка прибытия к пункту назначения
     public boolean hasArrived() {
         return traveledDistance >= distanceToDestination;
     }
 
-    public void setSpeed(int speed){
-        this.speed = speed;
-    }
 
+    //геттеры
     public int getSpeed() {
         return speed;
     }
@@ -74,16 +79,22 @@ public class Trader {
         return destinationCity;
     }
 
-    public void setDestinationCity(City destinationCity, int distance){
-        this.destinationCity = destinationCity;
-        this.distanceToDestination = distance;
-    }
-
     public int getDistanceToDestination() {
         return distanceToDestination;
     }
 
     public int getTraveledDistance(){
         return traveledDistance;
+    }
+
+
+    //сеттеры
+    public void setSpeed(int speed){
+        this.speed = speed;
+    }
+
+    public void setDestinationCity(City destinationCity, int distance){
+        this.destinationCity = destinationCity;
+        this.distanceToDestination = distance;
     }
 }
