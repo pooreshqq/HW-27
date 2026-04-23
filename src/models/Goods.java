@@ -88,6 +88,18 @@ public class Goods {
         }
     }
 
+    public void downgradeState() {
+        if ("Нормальное".equals(state)) {
+            onSlightlySpoiled();
+        } else if ("Слегка испорчен".equals(state)) {
+            onHalfSpoiled();
+        } else if ("Половина испортилась".equals(state)) {
+            onAlmostGone();
+        } else if ("Испорчен в хлам".equals(state)) {
+            onTotallyRuined();
+        }
+    }
+
     //геттеры
     public int getWeight() {
         return weight;
