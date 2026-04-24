@@ -12,7 +12,7 @@ public class BrokenWheelEvent implements Event{
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
         trader.travel(0);
     }
 }

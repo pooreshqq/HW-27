@@ -6,13 +6,15 @@ import models.Trader;
 import java.util.Random;
 
 public class RoadsideTavernEvent implements Event{
+    Random random = new Random();
+
     @Override
     public String getName() {
         return "Придорожный трактир";
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
         int foodCost = 5 + random.nextInt(10) + 1;
         trader.spendMoney(foodCost);
 

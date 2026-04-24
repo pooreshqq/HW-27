@@ -1,4 +1,6 @@
-package events;
+package utils;
+
+import events.*;
 
 import java.util.List;
 import java.util.Random;

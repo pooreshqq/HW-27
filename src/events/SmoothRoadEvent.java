@@ -11,8 +11,8 @@ public class SmoothRoadEvent implements Event{
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
-        int distance = Math.min(trader.getMaxSpeed(), trader.getSpeed() + 2);
+    public void apply(Trader trader) {
+        int distance = Math.min(5, trader.getSpeed() + 2);
         trader.travel(distance);
     }
 }

@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.Random;
 
 public class BanditsEvent implements Event{
+    Random random = new Random();
     @Override
     public String getName() {
         return "Разбойники большой дороги";
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
         List<Goods> goods = trader.getGoodsList();
 
         int ransom = random.nextInt(20) + 1;

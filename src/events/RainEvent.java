@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Random;
 
 public class RainEvent implements Event{
-
+    Random random = new Random();
     @Override
     public String getName() {
         return "Дождь";
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
         int distance = Math.max(1, trader.getSpeed() - 2);
         trader.travel(distance);
 
