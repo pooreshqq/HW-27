@@ -15,15 +15,16 @@ public class RainEvent implements Event{
 
     @Override
     public void apply(Trader trader) {
+        Random random = new Random();
         int distance = Math.max(1, trader.getSpeed() - 2);
-        trader.travel(distance);
 
-        if ((random.nextInt(100) + 1) < 30) {
-            List<Goods> goods = trader.getGoodsList();
-            if (!goods.isEmpty()) {
-                Goods spoiled = goods.get(random.nextInt(goods.size()));
-                spoiled.downgradeState();
+
+        if ((random.nextInt(101)) <= 30) {
+            if (trader.getGoodsList().isEmpty()) {
+                trader.getGoodsList().get(random.nextInt(trader.getGoodsList().size())).downgradeState();
             }
         }
+
+        trader.travel(distance);
     }
 }
