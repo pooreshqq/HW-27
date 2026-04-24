@@ -5,38 +5,29 @@ import models.Trader;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
-public class BanditsEvent implements Event{
-    Random random = new Random();
-    @Override
-    public String getName() {
-        return "Разбойники большой дороги";
-    }
-
+public class BanditsEvent implements Event {
     @Override
     public void apply(Trader trader) {
-        List<Goods> goods = trader.getGoodsList();
+        System.out.println("Сегодня вы встретили разбойников большой дороги");
 
-        int ransom = random.nextInt(20) + 1;
-
-        if (trader.getMoney() >= ransom) {
-            trader.spendMoney(ransom);
+        if (trader.getWallet() > 0) {
+            System.out.println("Вы отдали все деньги разбойникам");
+            trader.setWallet(0);
         } else {
-            Goods bestGoods = null;
-            double bestValue = -1;
+            Goods bestGoods = trader.giveTheBestGoods();
+            System.out.println("---------------------------------");
+            System.out.println("Вы отдали лучший товар: ");
+            System.out.printf("Тип: %s%n", bestGoods.getType());
+            System.out.printf("Цена: %s%n", bestGoods.getPrice());
+            System.out.printf("Вес: %s%n", bestGoods.getWeight());
+            System.out.printf("Состояние: %s%n", bestGoods.getState());
+            System.out.println("---------------------------------");
 
-            for (Goods g : goods) {
-                double value = g.getPrice() * g.getCoefficient();
-
-                if (value > bestValue) {
-                    bestValue = value;
-                    bestGoods = g;
-                }
-            }
-
-            trader.removeGoods(bestGoods);
         }
 
-        trader.travel(0);
+        trader.travelBy();
+
     }
 }
