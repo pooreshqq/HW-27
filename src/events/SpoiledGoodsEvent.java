@@ -20,6 +20,6 @@ public class SpoiledGoodsEvent implements Event{
             spoiled.downgradeState();
         }
 
-        trader.travel(trader.getSpeed());
+        trader.travelBy(trader.getSpeed());
     }
 }

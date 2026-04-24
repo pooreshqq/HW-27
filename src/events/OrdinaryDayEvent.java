@@ -13,6 +13,6 @@ public class OrdinaryDayEvent implements Event{
 
     @Override
     public void apply(Trader trader, Random random) {
-        trader.travel(trader.getSpeed());
+        trader.travelBy(trader.getSpeed());
     }
 }

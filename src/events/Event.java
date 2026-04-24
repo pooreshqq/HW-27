@@ -5,7 +5,9 @@ import models.Trader;
 import java.util.Random;
 
 public interface Event {
+    //Для получения имени события
     String getName();
 
-    void apply(Trader trader, Random random);
+    //Для применения изменений(?) от события
+    void apply(Trader trader);
 }

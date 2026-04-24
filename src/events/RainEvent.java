@@ -16,7 +16,7 @@ public class RainEvent implements Event{
     @Override
     public void apply(Trader trader, Random random) {
         int distance = Math.max(1, trader.getSpeed() - 2);
-        trader.travel(distance);
+        trader.travelBy(distance);
 
         if ((random.nextInt(100) + 1) < 30) {
             List<Goods> goods = trader.getGoodsList();

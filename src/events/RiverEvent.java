@@ -13,6 +13,6 @@ public class RiverEvent implements Event{
 
     @Override
     public void apply(Trader trader, Random random) {
-        trader.travel(0);
+        trader.travelBy(0);
     }
 }

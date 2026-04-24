@@ -14,6 +14,6 @@ public class MeetLocalEvent implements Event{
     @Override
     public void apply(Trader trader, Random random) {
         int bonus = 3 + random.nextInt(3) + 1;
-        trader.travel(trader.getSpeed() + bonus);
+        trader.travelBy(trader.getSpeed() + bonus);
     }
 }

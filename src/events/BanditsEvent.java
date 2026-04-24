@@ -5,37 +5,26 @@ import models.Trader;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
-public class BanditsEvent implements Event{
+public class BanditsEvent implements Event {
     @Override
     public String getName() {
         return "Разбойники большой дороги";
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
-        List<Goods> goods = trader.getGoodsList();
+    public void apply(Trader trader) {
+        System.out.println("Вы встретили разбойников большой дороги");
 
-        int ransom = random.nextInt(20) + 1;
-
-        if (trader.getMoney() >= ransom) {
-            trader.spendMoney(ransom);
+        //если у торговца вообще есть деньги
+        if (trader.getWallet() > 0) {
+            System.out.println("Вы отдали все деньг");
+            trader.setWallet(0);
         } else {
-            Goods bestGoods = null;
-            double bestValue = -1;
-
-            for (Goods g : goods) {
-                double value = g.getPrice() * g.getCoefficient();
-
-                if (value > bestValue) {
-                    bestValue = value;
-                    bestGoods = g;
-                }
-            }
-
-            trader.removeGoods(bestGoods);
+            //нам некому передавать
+            trader.giveTheBestGoods();
         }
 
-        trader.travel(0);
     }
 }

@@ -2,8 +2,6 @@ package events;
 
 import models.Trader;
 
-import java.util.Random;
-
 public class BrokenWheelEvent implements Event{
 
     @Override
@@ -12,7 +10,17 @@ public class BrokenWheelEvent implements Event{
     }
 
     @Override
-    public void apply(Trader trader, Random random) {
-        trader.travel(0);
+    public void apply(Trader trader)
+    {
+        trader.travelBy(0);
     }
 }
+
+//цикл длаофывдлао:
+//генерация события
+//trader.travelBy (идем сколько то лиг)
+
+
+//разбойники
+//у него украли один товар
+//он идет дальше

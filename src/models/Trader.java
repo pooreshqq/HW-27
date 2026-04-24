@@ -7,18 +7,20 @@ public class Trader {
     private int wallet;
     private int maxLoadCapacity;
     private int currentLoad;
-    private int speed;
-    private int distanceToDestination;
-    private int traveledDistance;
-    private City currentCity;
-    private City destinationCity;
-    private List<Goods> goodsList;
+    private int speed; //текущая скорость, сколько он преодолевает в день
     private int maxSpeed;
+    private int distanceToCity; //сколько он должен пройти до города
+    private int traveledDistance; //сколько он уже прошел
+    private City destinationCity; //Город выбирается в начале и может быть только один
+    private List<Goods> goodsList;
 
-    public Trader(int wallet, int maxLoadCapacity, City currentCity, int maxSpeed) {
+    private boolean canTravel = true;
+
+
+    public Trader(int wallet, int maxLoadCapacity, City destinationCity, int maxSpeed) {
         this.wallet = wallet;
         this.maxLoadCapacity = maxLoadCapacity;
-        this.currentCity = currentCity;
+        this.destinationCity = destinationCity;
         this.maxSpeed = maxSpeed;
         this.goodsList = new ArrayList<>();
         this.currentLoad = 0;
@@ -49,12 +51,32 @@ public class Trader {
 
 
     //Функция движения, возможно, надо переделать
-    public void travel(int distance) {
-        traveledDistance += Math.max(0, distance);
+    public void travelBy(int distance) {//убрать параметр
+        this.traveledDistance += Math.max(0, distance);
+        //speed
     }
 
-    public void spendMoney(int amount) {
-        wallet = Math.max(0, wallet - amount);
+    public void subtractMoneyInWallet(int amount) {
+        this.wallet = Math.max(0, wallet - amount);
+    }
+
+    public void giveTheBestGoods(){
+        Goods bestGoods = null;
+        double bestValue = Integer.MIN_VALUE;
+
+        for (Goods goods : this.goodsList) {
+            //подсчет цены
+            double value = goods.getPrice() * goods.getCoefficient();
+
+            //если текущая цена лучше "bestValue"
+            if (value > bestValue) {
+                bestValue = value;
+                bestGoods = goods;
+            }
+        }
+
+        removeGoods(bestGoods);
+        subtractMoneyInWallet((int) bestValue);
     }
 
     public void removeGoods(Goods goods) {
@@ -69,7 +91,7 @@ public class Trader {
 
     //Проверка прибытия к пункту назначения
     public boolean hasArrived() {
-        return traveledDistance >= distanceToDestination;
+        return traveledDistance >= distanceToCity;
     }
 
 
@@ -78,7 +100,7 @@ public class Trader {
         return speed;
     }
 
-    public int getMoney() {
+    public int getWallet() {
         return wallet;
     }
 
@@ -86,16 +108,12 @@ public class Trader {
         return goodsList;
     }
 
-    public City getCurrentCity(){
-        return currentCity;
-    }
-
     public City getDestinationCity() {
         return destinationCity;
     }
 
     public int getDistanceToDestination() {
-        return distanceToDestination;
+        return distanceToCity;
     }
 
     public int getTraveledDistance(){
@@ -114,6 +132,10 @@ public class Trader {
 
     public void setDestinationCity(City destinationCity, int distance){
         this.destinationCity = destinationCity;
-        this.distanceToDestination = distance;
+        this.distanceToCity = distance;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
     }
 }
