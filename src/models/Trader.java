@@ -96,6 +96,9 @@ public class Trader {
         wallet += amount;
     }
 
+    public void addMoney(int amount) {
+        wallet += amount;
+    }
 
     public boolean hasArrived() {
         return traveledDistance >= distanceToCity;
