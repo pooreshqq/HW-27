@@ -10,12 +10,11 @@ public class SpoiledGoodsEvent implements Event{
     @Override
     public void apply(Trader trader) {
         Random random = new Random();
+        System.out.println("Сегодня один из товаров испортился");
         List<Goods> goods = trader.getGoodsList();
         if (!goods.isEmpty()) {
-            Goods spoiled = goods.get(random.nextInt(goods.size()));
-            spoiled.downgradeState();
+            trader.getGoodsList().get(random.nextInt(trader.getGoodsList().size())).downgradeState();
         }
-
         trader.travelBy();
     }
 }
