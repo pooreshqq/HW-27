@@ -1,22 +1,37 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class City {
      private String name;
-     private List<String> demandedGoods;
+     private int distance;
 
-     public City(String name, List<String> demandedGoods){
-         this.name = name;
-         this.demandedGoods = demandedGoods;
+     private Random random = new Random();
+
+     private String[] cityNames = {"Berlin", "Moscow", "London", "Paris", "Rome", "Madrid", "Barcelona", "Seoul", "Lima", "Santiago", "Buenos Aires", "Sao Paulo", "Moscow", "Mexico City", "Cape Town", "Lima", "Santiago", "Buenos Aires", "Sao Paulo"};
+
+
+     public City(){
+        this.distance = random.nextInt(0, 200);
+        this.name = cityNames[random.nextInt(cityNames.length)];
      }
 
     public String getName() {
         return name;
     }
 
-    public List<String> getDemandedGoods() {
-        return demandedGoods;
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     @Override
