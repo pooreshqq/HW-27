@@ -9,22 +9,25 @@ import java.util.Scanner;
 
 public class BanditsEvent implements Event {
     @Override
-    public String getName() {
-        return "Разбойники большой дороги";
-    }
-
-    @Override
     public void apply(Trader trader) {
-        System.out.println("Вы встретили разбойников большой дороги");
+        System.out.println("Сегодня вы встретили разбойников большой дороги");
 
-        //если у торговца вообще есть деньги
         if (trader.getWallet() > 0) {
-            System.out.println("Вы отдали все деньг");
+            System.out.println("Вы отдали все деньги разбойникам");
             trader.setWallet(0);
         } else {
-            //нам некому передавать
-            trader.giveTheBestGoods();
+            Goods bestGoods = trader.giveTheBestGoods();
+            System.out.println("---------------------------------");
+            System.out.println("Вы отдали лучший товар: ");
+            System.out.printf("Тип: %s%n", bestGoods.getType());
+            System.out.printf("Цена: %s%n", bestGoods.getPrice());
+            System.out.printf("Вес: %s%n", bestGoods.getWeight());
+            System.out.printf("Состояние: %s%n", bestGoods.getState());
+            System.out.println("---------------------------------");
+
         }
+
+        trader.travelBy();
 
     }
 }

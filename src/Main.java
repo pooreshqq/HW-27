@@ -7,7 +7,8 @@ import state.State;
 
 public class Main {
     public static void main(String[] args) {
-        City Berlin = new City("Berlin");
+        City city = new City();
+        Goods goods = new Goods();
         Trader trader = new Trader(100, 200, Berlin, 10);
     }
 

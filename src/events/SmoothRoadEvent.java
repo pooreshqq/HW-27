@@ -2,17 +2,11 @@ package events;
 
 import models.Trader;
 
-import java.util.Random;
-
 public class SmoothRoadEvent implements Event{
     @Override
-    public String getName() {
-        return "Ровная дорога";
-    }
-
-    @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
+        System.out.println("Сегодня вы нашли ровную дорогу. Ваша скорость сегодня повышена на 2 лиги");
         int distance = Math.min(trader.getMaxSpeed(), trader.getSpeed() + 2);
-        trader.travelBy(distance);
+        trader.travelBy();
     }
 }

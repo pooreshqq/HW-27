@@ -8,18 +8,14 @@ import java.util.Random;
 
 public class SpoiledGoodsEvent implements Event{
     @Override
-    public String getName() {
-        return "Товар испортился";
-    }
-
-    @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
+        Random random = new Random();
         List<Goods> goods = trader.getGoodsList();
         if (!goods.isEmpty()) {
             Goods spoiled = goods.get(random.nextInt(goods.size()));
             spoiled.downgradeState();
         }
 
-        trader.travelBy(trader.getSpeed());
+        trader.travelBy();
     }
 }

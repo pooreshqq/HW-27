@@ -2,17 +2,9 @@ package events;
 
 import models.Trader;
 
-import java.util.Random;
-
 public class RiverEvent implements Event{
-
     @Override
-    public String getName() {
-        return "Река";
-    }
-
-    @Override
-    public void apply(Trader trader, Random random) {
-        trader.travelBy(0);
+    public void apply(Trader trader) {
+        System.out.println("Сегодня вы встретили реку. Вы потратили целый день, пока искал брод");
     }
 }

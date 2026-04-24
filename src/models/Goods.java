@@ -5,6 +5,8 @@ import exceptions.StateSelectException;
 import state.NormalState;
 import state.State;
 
+import java.util.Random;
+
 public class Goods {
     private int weight;
     private String state;
@@ -13,12 +15,12 @@ public class Goods {
     private GoodsType type;
     private double coefficient;
 
-    public Goods(int weight, int price, GoodsType type) {
-        this.weight = weight;
-        this.price = price;
-        this.type = type;
+    private Random random = new Random();
 
-        //пока что по умолчанию состояние товара будет нормальным
+    public Goods(){
+        this.weight = random.nextInt(5, 50);
+        this.price = random.nextInt(1, 5);
+        this.type = GoodsType.values()[random.nextInt(GoodsType.values().length)];
         setDefaultState();
     }
 

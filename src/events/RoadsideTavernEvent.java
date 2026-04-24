@@ -7,12 +7,8 @@ import java.util.Random;
 
 public class RoadsideTavernEvent implements Event{
     @Override
-    public String getName() {
-        return "Придорожный трактир";
-    }
-
-    @Override
-    public void apply(Trader trader, Random random) {
+    public void apply(Trader trader) {
+        Random random = new Random();
         int foodCost = 5 + random.nextInt(10) + 1;
         trader.subtractMoneyInWallet(foodCost);
 
@@ -24,6 +20,6 @@ public class RoadsideTavernEvent implements Event{
             }
         }
 
-        trader.travelBy(trader.getSpeed());
+        trader.travelBy();
     }
 }

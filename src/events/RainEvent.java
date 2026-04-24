@@ -7,23 +7,21 @@ import java.util.List;
 import java.util.Random;
 
 public class RainEvent implements Event{
-
     @Override
-    public String getName() {
-        return "Дождь";
-    }
+    public void apply(Trader trader) {
+        Random random = new Random();
 
-    @Override
-    public void apply(Trader trader, Random random) {
-        int distance = Math.max(1, trader.getSpeed() - 2);
-        trader.travelBy(distance);
+        System.out.println("Сегодня пошел дождь. Вы пройдете сегодня на 2 лиги меньше");
+        trader.setSpeed(trader.getSpeed() - 2);
+        trader.travelBy();
+        trader.setSpeed(trader.getSpeed() + 2);
 
-        if ((random.nextInt(100) + 1) < 30) {
-            List<Goods> goods = trader.getGoodsList();
-            if (!goods.isEmpty()) {
-                Goods spoiled = goods.get(random.nextInt(goods.size()));
-                spoiled.downgradeState();
+        if ((random.nextInt(101)) <= 30) {
+            if (trader.getGoodsList().isEmpty()) {
+                trader.getGoodsList().get(random.nextInt(trader.getGoodsList().size())).downgradeState();
             }
         }
+
+
     }
 }
